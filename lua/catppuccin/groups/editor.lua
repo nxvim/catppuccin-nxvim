@@ -2,7 +2,6 @@ local M = {}
 
 function M.get()
 	local pumsolid = O.float.solid
-	if vim.fn.has "nvim-0.12" == 1 then pumsolid = vim.o.pumborder == "solid" end
 
 	return {
 		ColorColumn = { bg = C.surface0 }, -- used for the columns set with 'colorcolumn'
