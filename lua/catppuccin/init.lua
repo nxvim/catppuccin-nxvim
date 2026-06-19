@@ -55,6 +55,13 @@ local M = {
 		},
 		color_overrides = {},
 		highlight_overrides = {},
+		-- Knobs read by the restored plugin integrations. The highlight-group
+		-- integrations (cmp/coc/copilot/barbar/buffon) need no config; only
+		-- blink.cmp's border style and lualine's colour overrides are read here.
+		integrations = {
+			blink_cmp = { style = "bordered" },
+			lualine = false,
+		},
 	},
 	flavours = { latte = 1, frappe = 2, macchiato = 3, mocha = 4 },
 }

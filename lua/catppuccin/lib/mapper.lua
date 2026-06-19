@@ -33,6 +33,21 @@ function M.apply(flavour)
 	end
 
 	theme.nxvim = require("catppuccin.groups.nxvim").get() -- nxvim native UI surfaces
+
+	-- Plugin integrations whose highlight groups we keep defined unconditionally
+	-- so custom plugins can link to / reuse their names. Statusline/tabline plugins
+	-- that consume a theme table rather than `:hi` groups (lualine, feline,
+	-- bufferline) live under catppuccin.special / catppuccin.utils, not here.
+	theme.integrations = {}
+	local integration_modules = { "cmp", "blink_cmp", "coc_nvim", "copilot_vim", "barbar", "buffon" }
+	for i = 1, #integration_modules do
+		theme.integrations = vim.tbl_deep_extend(
+			"force",
+			theme.integrations,
+			require("catppuccin.groups.integrations." .. integration_modules[i]).get()
+		)
+	end
+
 	theme.terminal = require("catppuccin.groups.terminal").get() -- terminal colors
 	local user_highlights = O.highlight_overrides
 	if type(user_highlights[flavour]) == "function" then user_highlights[flavour] = user_highlights[flavour](C) end

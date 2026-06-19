@@ -18,11 +18,18 @@ function M.load(flavour)
 		end
 	end
 
-	-- "keep" → leftmost wins: user overrides beat the native UI groups, which
-	-- beat syntax/treesitter, which beat editor chrome. Same precedence the
-	-- upstream compiler used (custom → integrations → syntax → editor), with the
-	-- nxvim native groups taking the old integrations slot.
-	local groups = vim.tbl_deep_extend("keep", theme.custom_highlights, theme.nxvim, theme.syntax, theme.editor)
+	-- "keep" → leftmost wins: user overrides beat the native UI groups and plugin
+	-- integrations, which beat syntax/treesitter, which beat editor chrome. Same
+	-- precedence the upstream compiler used (custom → integrations → syntax →
+	-- editor); nxvim native groups sit alongside integrations in that slot.
+	local groups = vim.tbl_deep_extend(
+		"keep",
+		theme.custom_highlights,
+		theme.nxvim,
+		theme.integrations,
+		theme.syntax,
+		theme.editor
+	)
 
 	local h = nx.hl.define
 	for group, color in pairs(groups) do
