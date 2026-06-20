@@ -6,7 +6,7 @@ local M = {}
 -- so the native picker, which-key popup and statusline match the rest of the
 -- theme. Everything else (Pmenu, StatusLine, Visual, Search, Diagnostic*,
 -- terminal_color_*, @captures) is themed by the standard groups; the file tree
--- is themed via the NvimTree* integration.
+-- and fuzzy picker are themed via the NvimTree*/Telescope* integrations.
 function M.get()
 	return {
 		-- which-key popup
@@ -20,22 +20,6 @@ function M.get()
 		-- statusline segments
 		StatusLineMode = { fg = C.base, bg = C.mauve, style = { "bold" } }, -- NORMAL/INSERT/… badge
 		StatusLineModified = { fg = C.peach }, -- the [+] dirty flag
-
-		-- telescope's well-known group names, kept so custom plugins can reuse
-		-- these conventional catppuccin values instead of redefining their own.
-		TelescopeBorder = { link = "FloatBorder" },
-		TelescopeNormal = { link = "NormalFloat" },
-		TelescopePreviewNormal = { link = "TelescopeNormal" },
-		TelescopePromptNormal = { link = "TelescopeNormal" },
-		TelescopeResultsNormal = { link = "TelescopeNormal" },
-		TelescopeTitle = { link = "FloatTitle" },
-		TelescopeSelectionCaret = { fg = C.flamingo, bg = C.surface0 },
-		TelescopeSelection = { fg = C.flamingo, bg = C.surface0, style = { "bold" } },
-		TelescopeMatching = { fg = C.blue },
-		TelescopePromptPrefix = { fg = C.flamingo },
-		TelescopePreviewTitle = O.float.solid and { fg = C.crust, bg = C.green } or nil,
-		TelescopePromptTitle = O.float.solid and { fg = C.crust, bg = C.red } or nil,
-		TelescopeResultsTitle = O.float.solid and { fg = C.crust, bg = C.lavender } or nil,
 	}
 end
 

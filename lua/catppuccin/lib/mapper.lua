@@ -39,7 +39,8 @@ function M.apply(flavour)
 	-- that consume a theme table rather than `:hi` groups (lualine, feline,
 	-- bufferline) live under catppuccin.special / catppuccin.utils, not here.
 	theme.integrations = {}
-	local integration_modules = { "cmp", "blink_cmp", "coc_nvim", "copilot_vim", "barbar", "buffon", "nvimtree" }
+	local integration_modules =
+		{ "cmp", "blink_cmp", "coc_nvim", "copilot_vim", "barbar", "buffon", "nvimtree", "telescope" }
 	for i = 1, #integration_modules do
 		theme.integrations = vim.tbl_deep_extend(
 			"force",
