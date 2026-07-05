@@ -49,6 +49,14 @@ function M.load(flavour)
 		end
 		h(0, group, color)
 	end
+
+	-- Notify ColorScheme listeners (statuslines, tree sidebars, …) so a DIRECT
+	-- `require("catppuccin").load(flavour)` — not just `:colorscheme catppuccin-<flavour>`
+	-- — makes them re-theme. Fired last, after colors_name + every group is applied,
+	-- so handlers read the fully-active theme. (`:colorscheme <name>` also fires
+	-- ColorScheme from the core after sourcing colors/*.lua; the extra fire here is
+	-- idempotent — a well-behaved handler just re-applies the same result.)
+	nx.autocmd.exec("ColorScheme", { pattern = vim.g.colors_name })
 end
 
 return M
